@@ -1,0 +1,25 @@
+{
+  "name": "js-back-end-taro-cards",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dimitarqnkulow/JS-Back-End-Taro-Cards.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dimitarqnkulow/JS-Back-End-Taro-Cards/issues"
+  },
+  "homepage": "https://github.com/dimitarqnkulow/JS-Back-End-Taro-Cards#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.7",
+    "nodemon": "^2.0.22"
+  }
+}
