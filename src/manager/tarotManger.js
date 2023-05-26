@@ -32,6 +32,7 @@ const tarotCards = [
 
 exports.getAll = () => {
   const currentDeck = tarotCards.slice();
+  return currentDeck;
 };
 
 exports.getOne = (tarotId) => tarotCards.find((x) => x.id == tarotId);
