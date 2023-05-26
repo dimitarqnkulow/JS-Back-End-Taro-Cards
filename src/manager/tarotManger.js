@@ -30,8 +30,20 @@ const tarotCards = [
   },
 ];
 
-exports.getAll = () => {
-  const currentDeck = tarotCards.slice();
+exports.getAll = (search, from, to) => {
+  let currentDeck = tarotCards.slice();
+
+  if (search) {
+    currentDeck = currentDeck.filter(
+      (x) => x.name.toLowerCase() == search.toLowerCase()
+    );
+  }
+  if (from) {
+    currentDeck = currentDeck.filter((x) => x.arcanNumber >= from);
+  }
+  if (to) {
+    currentDeck = currentDeck.filter((x) => x.arcanNumber <= to);
+  }
   return currentDeck;
 };
 

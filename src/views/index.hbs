@@ -1,10 +1,11 @@
 <h1>Browser</h1>
-<form action="" method="">
-  <input type="text" class="search" name="search" placeholder="Search..." />
+<form action="/" method="GET">
+  <input type="text" class="search" name="search" value="{{search}}" placeholder="Search..." />
   <input
     type="number"
     name="from"
     class="arcanNumber"
+    value="{{from}}"
     placeholder="Major arcan from..."
   />
   <span>-</span>
@@ -12,6 +13,8 @@
     type="number"
     name="to"
     class="arcanNumber"
+    value="{{to}}"
+
     placeholder="Major arcan to..."
   />
   <input type="submit" value="search" />
