@@ -1,5 +1,4 @@
 const handlebars = require("express-handlebars");
-const { extname } = require("path");
 
 function handlebarsConfig(app) {
   app.engine("hbs", handlebars.engine({ extname: "hbs" }));
