@@ -34,8 +34,8 @@ exports.getAll = (search, from, to) => {
   let currentDeck = tarotCards.slice();
 
   if (search) {
-    currentDeck = currentDeck.filter(
-      (x) => x.name.toLowerCase() == search.toLowerCase()
+    currentDeck = currentDeck.filter((x) =>
+      x.name.toLowerCase().includes(search.toLowerCase())
     );
   }
   if (from) {
