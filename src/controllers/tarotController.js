@@ -17,8 +17,8 @@ router.post("/create", (req, res) => {
   res.redirect("/");
 });
 
-router.get("/:tarotId/details", (req, res) => {
-  const tarotDetails = tarotManager.getOne(req.params.tarotId);
+router.get("/:tarotId/details", async (req, res) => {
+  const tarotDetails = await tarotManager.getOne(req.params.tarotId);
   res.render("details", tarotDetails);
 });
 module.exports = router;

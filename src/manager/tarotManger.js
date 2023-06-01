@@ -1,5 +1,6 @@
 const uniqid = require("uniqid");
 
+const Tarot = require("../models/Tarot");
 const tarotCards = [
   {
     id: "c8kij4cli0avh4y",
@@ -30,8 +31,8 @@ const tarotCards = [
   },
 ];
 
-exports.getAll = (search, from, to) => {
-  let currentDeck = tarotCards.slice();
+exports.getAll = async (search, from, to) => {
+  let currentDeck = await Tarot.find().lean();
 
   if (search) {
     currentDeck = currentDeck.filter((x) =>
@@ -47,14 +48,10 @@ exports.getAll = (search, from, to) => {
   return currentDeck;
 };
 
-exports.getOne = (tarotId) => tarotCards.find((x) => x.id == tarotId);
+exports.getOne = async (tarotId) => await Tarot.findById(tarotId).lean();
 
-exports.create = (tarotCardData) => {
-  const newTarotCard = {
-    id: uniqid(),
-    ...tarotCardData,
-  };
-  tarotCards.push(newTarotCard);
+exports.create = async (tarotCardData) => {
+  const newTarotCard = await Tarot.create(tarotCardData);
 
   return newTarotCard;
 };
