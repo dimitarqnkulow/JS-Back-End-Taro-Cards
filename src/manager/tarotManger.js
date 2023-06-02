@@ -9,10 +9,12 @@ exports.getAll = async (search, from, to) => {
     );
   }
   if (from) {
-    currentDeck = currentDeck.filter((x) => x.arcanNumber >= from);
+    currentDeck = await Tarot.find({ arcanNumber: { $gte: from } }).lean();
   }
   if (to) {
-    currentDeck = currentDeck.filter((x) => x.arcanNumber <= to);
+    currentDeck = await Tarot.find({
+      arcanNumber: { $lte: to, $e: to },
+    }).lean();
   }
   return currentDeck;
 };
