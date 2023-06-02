@@ -1,5 +1,3 @@
-const uniqid = require("uniqid");
-
 const Tarot = require("../models/Tarot");
 
 exports.getAll = async (search, from, to) => {
@@ -19,7 +17,7 @@ exports.getAll = async (search, from, to) => {
   return currentDeck;
 };
 
-exports.getOne = async (tarotId) => await Tarot.findById(tarotId).lean();
+exports.getOne = (tarotId) => Tarot.findById(tarotId);
 
 exports.create = async (tarotCardData) => {
   const newTarotCard = await Tarot.create(tarotCardData);
