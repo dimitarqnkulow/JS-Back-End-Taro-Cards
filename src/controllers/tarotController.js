@@ -20,7 +20,9 @@ router.post("/create", (req, res) => {
 });
 
 router.get("/:tarotId/details", async (req, res) => {
-  const tarotDetails = await tarotManager.getOne(req.params.tarotId).lean();
+  const tarotDetails = await tarotManager
+    .getOneWithAccessories(req.params.tarotId)
+    .lean();
   res.render("details", tarotDetails);
 });
 
@@ -30,5 +32,14 @@ router.get("/:tarotId/attach-accessories", async (req, res) => {
   const hasAccessories = accessories.length > 0;
 
   res.render("accessories/attach", { card, accessories, hasAccessories });
+});
+
+router.post("/:tarotId/attach-accessories", async (req, res) => {
+  const tarotId = req.params.tarotId;
+  const { accessory: accessoryId } = req.body;
+
+  await tarotManager.attachAccessory(tarotId, accessoryId);
+
+  res.redirect(`/tarot/${tarotId}/details`);
 });
 module.exports = router;
