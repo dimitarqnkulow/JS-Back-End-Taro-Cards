@@ -5,6 +5,12 @@ const tarotSchema = new mongoose.Schema({
   description: { type: String, required: true },
   imageUrl: { type: String, required: true },
   arcanNumber: { type: Number, required: true },
+  accessories: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "Accessory",
+    },
+  ],
 });
 
 const Tarot = mongoose.model("Tarot", tarotSchema);

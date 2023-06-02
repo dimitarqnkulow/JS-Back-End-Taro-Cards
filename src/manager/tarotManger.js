@@ -17,10 +17,22 @@ exports.getAll = async (search, from, to) => {
   return currentDeck;
 };
 
+exports.getOneWithAccessories = (tarotId) =>
+  this.getOne(tarotId).populate("accessories");
+
 exports.getOne = (tarotId) => Tarot.findById(tarotId);
 
 exports.create = async (tarotCardData) => {
   const newTarotCard = await Tarot.create(tarotCardData);
 
   return newTarotCard;
+};
+
+exports.attachAccessory = async (tarotId, accessoryId) => {
+  // return Tarot.findByIdAndUpdate(tarotId, {
+  //   $push: { accessories: accessoryId },
+  // });
+  const card = await Tarot.findById(tarotId);
+  card.accessories.push(accessoryId);
+  return card.save();
 };
