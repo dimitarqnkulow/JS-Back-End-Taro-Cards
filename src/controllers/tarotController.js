@@ -28,7 +28,9 @@ router.get("/:tarotId/details", async (req, res) => {
 
 router.get("/:tarotId/attach-accessories", async (req, res) => {
   const card = await tarotManager.getOne(req.params.tarotId).lean();
-  const accessories = await accessoryManager.getAll().lean();
+  const accessories = await accessoryManager
+    .getRestOfAccessories(card.accessories)
+    .lean();
   const hasAccessories = accessories.length > 0;
 
   res.render("accessories/attach", { card, accessories, hasAccessories });
