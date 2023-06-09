@@ -44,7 +44,7 @@ header ul li a {
   text-decoration: none;
   text-transform: uppercase;
   color: white;
-  font-weight: bolder;
+  font-weight: bold;
   margin: 0 1em;
 }
 
@@ -66,7 +66,6 @@ div.container {
 h1 {
   text-align: center;
   text-transform: uppercase;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 div.card {
@@ -99,18 +98,25 @@ main a.btn {
   text-decoration: none;
   display: inline-block;
   font-size: 18px;
-  width: 43%;
+  width: 35%;
   margin: 12px;
-  margin-left: 6%;
   border-radius: 4px;
   background: #f1df21;
   color: white;
+}
+
+.details a.btn {
+  width: 28%;
 }
 
 button:hover {
   background-color: #0b2133;
   color: white;
   cursor: pointer;
+}
+
+a.btn:hover {
+  text-decoration: underline;
 }
 
 a {
@@ -149,7 +155,7 @@ div.about a {
 }
 
 form label {
-  background: #607588;
+  background: #db4747;
   color: white;
   padding: 12px;
   border-top-left-radius: 4px;
@@ -158,6 +164,7 @@ form label {
 
 input[type="text"],
 input[type="number"],
+input[type="password"],
 select,
 textarea {
   width: 100%;
@@ -169,7 +176,7 @@ textarea {
   margin: 8px 0 2em;
 }
 
-input.arcanNumber {
+input.difficulty {
   width: 20%;
 }
 
@@ -245,7 +252,7 @@ h2 {
 }
 
 footer {
-  background-color: #f1df21;
+  background: #f1df21;
   padding: 1em;
   text-align: center;
   color: white;

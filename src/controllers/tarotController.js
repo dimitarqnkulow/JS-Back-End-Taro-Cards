@@ -3,7 +3,7 @@ const tarotManager = require("../manager/tarotManger");
 const accessoryManager = require("../manager/accessoryManager");
 
 router.get("/create", (req, res) => {
-  res.render("create");
+  res.render("card/create");
 });
 
 router.post("/create", (req, res) => {
@@ -23,7 +23,7 @@ router.get("/:tarotId/details", async (req, res) => {
   const tarotDetails = await tarotManager
     .getOneWithAccessories(req.params.tarotId)
     .lean();
-  res.render("details", tarotDetails);
+  res.render("card/details", tarotDetails);
 });
 
 router.get("/:tarotId/attach-accessories", async (req, res) => {
