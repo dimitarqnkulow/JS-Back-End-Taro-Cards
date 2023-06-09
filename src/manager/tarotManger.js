@@ -38,3 +38,6 @@ exports.attachAccessory = async (tarotId, accessoryId) => {
   card.accessories.push(accessoryId);
   return card.save();
 };
+
+exports.update = (tarotId, tarotCardData) =>
+  Tarot.findByIdAndUpdate(tarotId, tarotCardData);

@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const tarotManager = require("../manager/tarotManger");
 const accessoryManager = require("../manager/accessoryManager");
-
+const { majorArcanOptions } = require("../utils/optionsHelper");
+//Create
 router.get("/create", (req, res) => {
   res.render("card/create");
 });
@@ -18,14 +19,14 @@ router.post("/create", (req, res) => {
 
   res.redirect("/");
 });
-
+//Details
 router.get("/:tarotId/details", async (req, res) => {
   const tarotDetails = await tarotManager
     .getOneWithAccessories(req.params.tarotId)
     .lean();
   res.render("card/details", tarotDetails);
 });
-
+//Accessories
 router.get("/:tarotId/attach-accessories", async (req, res) => {
   const card = await tarotManager.getOne(req.params.tarotId).lean();
   const accessories = await accessoryManager
@@ -43,5 +44,25 @@ router.post("/:tarotId/attach-accessories", async (req, res) => {
   await tarotManager.attachAccessory(tarotId, accessoryId);
 
   res.redirect(`/tarot/${tarotId}/details`);
+});
+
+//Edit
+router.get("/:tarotId/edit", async (req, res) => {
+  const card = await tarotManager.getOne(req.params.tarotId).lean();
+  const options = majorArcanOptions(card.arcanNumber);
+  res.render("card/edit", { card, options });
+});
+
+router.post("/:tarotId/edit", async (req, res) => {
+  const { name, description, imageUrl, arcanNumber } = req.body;
+
+  await tarotManager.update(req.params.tarotId, {
+    name,
+    description,
+    imageUrl,
+    arcanNumber,
+  });
+
+  res.redirect(`/tarot/${req.params.tarotId}/details`);
 });
 module.exports = router;
