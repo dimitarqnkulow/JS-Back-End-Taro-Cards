@@ -1,14 +1,15 @@
-<h1>{{name}}</h1>
-<img class="card" src="{{imageUrl}}" />
+<h1>{{card.name}}</h1>
+<img class="card" src="{{card.imageUrl}}" />
 <div class="details">
   <p><span>Description:</span>
-    {{description}}</p>
-  <p><span>Arcan Number:</span> {{arcanNumber}}</p>
+    {{card.description}}</p>
+  <p><span>Arcan Number:</span> {{card.arcanNumber}}</p>
   <a class="btn" href="/">Back</a>
-  <a class="btn" href="/tarot/{{_id}}/attach-accessories">Attach</a>
-  <a class="btn" href="/tarot/{{_id}}/edit">Edit</a>
-  <a class="btn" href="/tarot/{{_id}}/delete">Delete</a>
-
+  <a class="btn" href="/tarot/{{card._id}}/attach-accessories">Attach</a>
+  {{#if isOwner}}
+    <a class="btn" href="/tarot/{{card._id}}/edit">Edit</a>
+    <a class="btn" href="/tarot/{{card._id}}/delete">Delete</a>
+  {{/if}}
 </div>
 <h2>Accessories</h2>
 <div class="accessories">

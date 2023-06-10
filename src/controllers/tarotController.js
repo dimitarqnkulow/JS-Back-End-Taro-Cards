@@ -20,10 +20,13 @@ router.post("/create", (req, res) => {
 });
 //Details
 router.get("/:tarotId/details", async (req, res) => {
-  const tarotDetails = await tarotManager
+  const card = await tarotManager
     .getOneWithAccessories(req.params.tarotId)
     .lean();
-  res.render("card/details", tarotDetails);
+
+  const isOwner = card.owner == req.user?.id;
+
+  res.render("card/details", { card, isOwner });
 });
 //Accessories
 router.get("/:tarotId/attach-accessories", async (req, res) => {
