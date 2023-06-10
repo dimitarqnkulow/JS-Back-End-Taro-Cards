@@ -9,14 +9,13 @@ router.get("/create", (req, res) => {
 
 router.post("/create", (req, res) => {
   const { name, description, imageUrl, arcanNumber } = req.body;
-
   tarotManager.create({
     name,
     description,
     imageUrl,
     arcanNumber: Number(arcanNumber),
+    owner: req.user.id,
   });
-
   res.redirect("/");
 });
 //Details

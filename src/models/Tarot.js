@@ -11,6 +11,7 @@ const tarotSchema = new mongoose.Schema({
       ref: "Accessory",
     },
   ],
+  owner: { type: mongoose.Types.ObjectId, ref: "User" },
 });
 
 const Tarot = mongoose.model("Tarot", tarotSchema);

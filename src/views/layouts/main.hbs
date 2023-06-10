@@ -12,13 +12,16 @@
       <header>
         <ul>
           <li><img class="logo" src="/images/logo.png" /></li>
-          <li><a href="/">Tarot Cards</a></li>
-          <li><a href="/tarot/create">Add a Card</a></li>
-          <li><a href="/accessories/create">Add Accessory</a></li>
-          <li><a href="/about">About Tarot</a></li>
-          <li><a href="/users/logout">Logout</a></li>
-          <li><a href="/users/login">Login</a></li>
-          <li><a href="/users/register">Register</a></li>
+          {{#if isAuthenticated}}
+            <li><a href="/tarot/create">Add a Card</a></li>
+            <li><a href="/accessories/create">Add Accessory</a></li>
+            <li><a href="/users/logout">Logout</a></li>
+          {{else}}
+            <li><a href="/">Tarot Cards</a></li>
+            <li><a href="/about">About Tarot</a></li>
+            <li><a href="/users/login">Login</a></li>
+            <li><a href="/users/register">Register</a></li>
+          {{/if}}
         </ul>
       </header>
       <main>
