@@ -2,12 +2,13 @@ const router = require("express").Router();
 const tarotManager = require("../manager/tarotManger");
 const accessoryManager = require("../manager/accessoryManager");
 const { majorArcanOptions } = require("../utils/optionsHelper");
+const { isAuth } = require("../middleware/authMiddleware");
 //Create
-router.get("/create", (req, res) => {
+router.get("/create", isAuth, (req, res) => {
   res.render("card/create");
 });
 
-router.post("/create", (req, res) => {
+router.post("/create", isAuth, (req, res) => {
   const { name, description, imageUrl, arcanNumber } = req.body;
   tarotManager.create({
     name,
@@ -19,7 +20,7 @@ router.post("/create", (req, res) => {
   res.redirect("/");
 });
 //Details
-router.get("/:tarotId/details", async (req, res) => {
+router.get("/:tarotId/details", isAuth, async (req, res) => {
   const card = await tarotManager
     .getOneWithAccessories(req.params.tarotId)
     .lean();
@@ -39,7 +40,7 @@ router.get("/:tarotId/attach-accessories", async (req, res) => {
   res.render("accessories/attach", { card, accessories, hasAccessories });
 });
 
-router.post("/:tarotId/attach-accessories", async (req, res) => {
+router.post("/:tarotId/attach-accessories", isAuth, async (req, res) => {
   const tarotId = req.params.tarotId;
   const { accessory: accessoryId } = req.body;
 
@@ -49,13 +50,13 @@ router.post("/:tarotId/attach-accessories", async (req, res) => {
 });
 
 //Edit
-router.get("/:tarotId/edit", async (req, res) => {
+router.get("/:tarotId/edit", isAuth, async (req, res) => {
   const card = await tarotManager.getOne(req.params.tarotId).lean();
   const options = majorArcanOptions(card.arcanNumber);
   res.render("card/edit", { card, options });
 });
 
-router.post("/:tarotId/edit", async (req, res) => {
+router.post("/:tarotId/edit", isAuth, async (req, res) => {
   const { name, description, imageUrl, arcanNumber } = req.body;
 
   await tarotManager.update(req.params.tarotId, {
@@ -69,13 +70,13 @@ router.post("/:tarotId/edit", async (req, res) => {
 });
 
 //Delete
-router.get("/:tarotId/delete", async (req, res) => {
+router.get("/:tarotId/delete", isAuth, async (req, res) => {
   const card = await tarotManager.getOne(req.params.tarotId).lean();
   const options = majorArcanOptions(card.arcanNumber);
   res.render("card/delete", { card, options });
 });
 
-router.post("/:tarotId/delete", async (req, res) => {
+router.post("/:tarotId/delete", isAuth, async (req, res) => {
   await tarotManager.delete(req.params.tarotId);
 
   res.redirect("/");
