@@ -65,4 +65,17 @@ router.post("/:tarotId/edit", async (req, res) => {
 
   res.redirect(`/tarot/${req.params.tarotId}/details`);
 });
+
+//Delete
+router.get("/:tarotId/delete", async (req, res) => {
+  const card = await tarotManager.getOne(req.params.tarotId).lean();
+  const options = majorArcanOptions(card.arcanNumber);
+  res.render("card/delete", { card, options });
+});
+
+router.post("/:tarotId/delete", async (req, res) => {
+  await tarotManager.delete(req.params.tarotId);
+
+  res.redirect("/");
+});
 module.exports = router;

@@ -41,3 +41,5 @@ exports.attachAccessory = async (tarotId, accessoryId) => {
 
 exports.update = (tarotId, tarotCardData) =>
   Tarot.findByIdAndUpdate(tarotId, tarotCardData);
+
+exports.delete = (tarotId) => Tarot.findByIdAndDelete(tarotId);

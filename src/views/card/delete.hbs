@@ -3,13 +3,13 @@
             <div class="form">
                 <form method="POST">
                     <label for="name">Name</label>
-                    <input type="text" id="name" name="name" value="" disabled="true" />
+                    <input type="text" id="name" name="name" value="{{card.name}}" disabled="true" />
                     <label for="description">Description</label>
-                    <textarea id="description" name="description" disabled="true" /></textarea>
+                    <textarea id="description" name="description" disabled="true" />{{card.description}}</textarea>
                     <label for="image">ImageUrl</label>
-                    <input type="text" id="image" name="imageUrl" value="" disabled="true" />
+                    <input type="text" id="image" name="imageUrl" value="{{card.imageUrl}}" disabled="true" />
                     <label for="arcanNumber">Major Arcan</label>
-                    <select id="arcanNumber" name="arcanNumber" value="" disabled="true" />
+                    <select id="arcanNumber" name="arcanNumber" value="{{card.arcanNumber}}" disabled="true" />
                   {{#each options}}
                         <option value="{{value}}" {{#if isSelected}}selected{{/if}}>{{value}} - {{title}}</option>
                     {{/each}}
